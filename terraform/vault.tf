@@ -11,9 +11,12 @@ resource "vault_jwt_auth_backend" "keycloak" {
   path               = "oidc"
   type               = "oidc"
   default_role       = "default"
-  oidc_discovery_url = format("http://keycloak:8080/realms/%s" ,keycloak_realm.realm.id)
-  oidc_client_id     = keycloak_openid_client.openid_client.client_id
-  oidc_client_secret = keycloak_openid_client.openid_client.client_secret
+  #oidc_discovery_url = format("http://keycloak:8080/realms/%s" ,keycloak_realm.realm.id)
+  #oidc_client_id     = keycloak_openid_client.openid_client.client_id
+  #oidc_client_secret = keycloak_openid_client.openid_client.client_secret
+  oidc_response_types = [ "id_token" ]
+  oidc_response_mode = "form_post"
+  jwks_url = format("http://keycloak:8080/realms/%s/protocol/openid-connect/certs" ,keycloak_realm.realm.id)
 
   tune {
     audit_non_hmac_request_keys  = []

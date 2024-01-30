@@ -65,9 +65,10 @@ resource "keycloak_openid_client" "openid_client" {
 
   name                = "vault"
   enabled             = true
-  standard_flow_enabled = true
+  standard_flow_enabled = false
+  implicit_flow_enabled = true
 
-  access_type         = "CONFIDENTIAL"
+  access_type         = "PUBLIC"
   valid_redirect_uris = [
     "http://localhost:8200/*"
   ]
