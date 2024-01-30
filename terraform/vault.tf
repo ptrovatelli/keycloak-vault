@@ -41,6 +41,7 @@ resource "vault_jwt_auth_backend_role" "default" {
   role_type             = "oidc"
   allowed_redirect_uris = ["http://localhost:8200/ui/vault/auth/oidc/oidc/callback", "http://localhost:8250/oidc/callback"]
   groups_claim          = format("/resource_access/%s/roles",keycloak_openid_client.openid_client.client_id)
+  verbose_oidc_logging  = true
 }
 
 #------------------------------------------------------------------------------#
